@@ -5,15 +5,6 @@ from bs4 import BeautifulSoup
 from IPython.display import Markdown, display
 from openai import OpenAI
 
-# add a requirement in requirements.txt
-
-# requirements.txt
-# selenium
-# beautifulsoup4
-# requests
-# openai
-# ipython
-# python-dotenv
 
 # pip install -r requirements.txt
 
@@ -53,8 +44,6 @@ class Website:
         for irrelevant in soup.body(["script", "style", "img", "input"]):
             irrelevant.decompose()
         self.text = soup.body.get_text(separator="\n", strip=True)
-
-
 
 
 
@@ -123,10 +112,6 @@ save_summary_to_file("https://www.cnn.com", "cnn_summary.md")
 
 
 
-
-
-
-
 # for javascript rendering websites give code
 
 # from selenium import webdriver
@@ -134,33 +119,33 @@ save_summary_to_file("https://www.cnn.com", "cnn_summary.md")
 # from selenium.webdriver.common.by import By
 # from selenium.webdriver.chrome.options import Options
 
-PATH_TO_CHROME_DRIVER = '..\\path\\to\\chromedriver.exe'
+# PATH_TO_CHROME_DRIVER = '..\\path\\to\\chromedriver.exe'
 
-class Website:
-    url: str
-    title: str
-    text: str
+# class Website:
+#     url: str
+#     title: str
+#     text: str
 
-    def __init__(self, url):
-        self.url = url
+#     def __init__(self, url):
+#         self.url = url
 
-        options = Options()
+#         options = Options()
 
-        options.add_argument("--no-sandbox")
-        options.add_argument("--disable-dev-shm-usage")
+#         options.add_argument("--no-sandbox")
+#         options.add_argument("--disable-dev-shm-usage")
 
-        service = Service(PATH_TO_CHROME_DRIVER)
-        driver = webdriver.Chrome(service=service, options=options)
-        driver.get(url)
+#         service = Service(PATH_TO_CHROME_DRIVER)
+#         driver = webdriver.Chrome(service=service, options=options)
+#         driver.get(url)
 
-        input("Please complete the verification in the browser and press Enter to continue...")
-        page_source = driver.page_source
-        driver.quit()
+#         input("Please complete the verification in the browser and press Enter to continue...")
+#         page_source = driver.page_source
+#         driver.quit()
 
-        soup = BeautifulSoup(page_source, 'html.parser')
-        self.title = soup.title.string if soup.title else "No title found"
-        for irrelevant in soup(["script", "style", "img", "input"]):
-            irrelevant.decompose()
-        self.text = soup.get_text(separator="\n", strip=True)
+#         soup = BeautifulSoup(page_source, 'html.parser')
+#         self.title = soup.title.string if soup.title else "No title found"
+#         for irrelevant in soup(["script", "style", "img", "input"]):
+#             irrelevant.decompose()
+#         self.text = soup.get_text(separator="\n", strip=True)
 
 

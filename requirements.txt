@@ -1,0 +1,9 @@
+# requirements.txt
+
+# for web-sumarizer.py
+selenium
+beautifulsoup4
+requests
+openai
+ipython
+python-dotenv 
