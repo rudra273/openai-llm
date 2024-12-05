@@ -47,8 +47,6 @@ class Website:
 
 
 
-
-
 site = Website("https://www.cnn.com")
 
 # print(site.title)
