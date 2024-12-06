@@ -6,6 +6,8 @@ from dotenv import load_dotenv
 from bs4 import BeautifulSoup
 from IPython.display import Markdown, display, update_display
 from openai import OpenAI
+from openai import OpenAI  # Modify this import
+
 
 
 load_dotenv()
@@ -141,3 +143,24 @@ def save_brochure_to_file(Company_name, url , filename):
 
 
 save_brochure_to_file("Anthropic", "https://anthropic.com", "anthropic_brochure.md")
+
+
+
+# If you want to see the brochure in the notebook 
+def stream_brochure(company_name, url):
+    stream = openai.chat.completions.create(
+        model=MODEL,
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": get_brochure_user_prompt(company_name, url)}
+          ],
+        stream=True
+    )
+    
+    response = ""
+    display_handle = display(Markdown(""), display_id=True)
+    for chunk in stream:
+        response += chunk.choices[0].delta.content or ''
+        response = response.replace("```","").replace("markdown", "")
+        update_display(Markdown(response), display_id=display_handle.display_id)
+
